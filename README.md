@@ -1,13 +1,13 @@
 # Overview:
 
-A patient being admitted within a specific time period, 30 days or 90 days, following the previous hospital visit of a discharged patient is called as a readmission event. Number of readmission events are a metric for US healthcare system. Avoidable readmission events cost $41.3B anual cost. 
+A patient being admitted within a specific time period, 30 days or 90 days, following the previous hospital visit is called a readmission event. Number of readmission events are a metric for US healthcare system and avoidable readmission events cost $41.3B/yr. 
 
-For demoing the predictive modeling of readmission use case, we used synthetic patient data from [Synthea](https://github.com/synthetichealth/synthea). This repo has the code for end-to-end machine learing i.e., creating synthetic data from Synthea, storing data in object storage, creating ADW tables, engineering the features and training & deploying model using Oracle ADS.
+For demoing the predictive modeling of readmission use case, synthetic patient data from [Synthea](https://github.com/synthetichealth/synthea) is used. This repo has the code for end-to-end machine learing i.e., creating synthetic data from Synthea, storing data in object storage, creating ADW tables, engineering the features and training & deploying model using Oracle ADS.
 
 
 # Business use:
 
-Health insurance companies spend 80\% of the cost on 20\% of the insured members. One of the main contributors to this cost is readmission events. Health insurance companies have specialized nurse support to outreach members with an in-hospital admission, to ensure that they are properly treated at the hospital and to send them to a right triage after discharge. Readmission predictive model would help health insurance companies to utilize nurse resources to target members with high risk of readmission and reduce the medical cost.
+Health insurance companies spend ~ 80\% of the cost on ~20\% of the insured members. One of the main contributors to this cost is readmission events. Health insurance companies have specialized nurse support to outreach members with an in-hospital admission, to ensure that they are properly treated at the hospital and to send them to a right triage after discharge. Readmission predictive model would help health insurance companies to utilize nurse resources to target members with high risk of readmission and reduce the medical cost.
 
 In US, Center for Medicare and Medicaid services (CMS) provides STARs rating to hospital quality summarizing a variety of measures across 5 areas (mortality, safety of care, readmission, patient experience and timely & effective care) of quality for each hospital.  Readmission being one of the key measures, predictive model would help hospitals to identify the patients that are at high risk of readmission and improve their quality of care.
 
