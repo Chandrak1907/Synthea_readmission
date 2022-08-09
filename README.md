@@ -54,6 +54,7 @@ CSV file data dictionary is available [here](https://github-wiki-see.page/m/synt
 
 
 # Reference architecture diagram
+![Architecture Diagram](Architecture.png)
 
 # Pre-requisites
 1. On desktop machine, install [OCI Command Line Interface](https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/cliinstall.htm).  
