@@ -1,15 +1,15 @@
 # Overview:
 
-A patient being admitted within a specific time period, 30 days or 90 days, following the previous hospital visit of a discharged patient is called as a readmission event. Number of readmission events are a metric for US healthcare system. Avoidable readmission events cost /$41.3B anual cost. 
+A patient being admitted within a specific time period, 30 days or 90 days, following the previous hospital visit is called a readmission event. Number of readmission events are a metric for US healthcare system and avoidable readmission events cost $41.3B/yr. 
 
-For demoing the predictive modeling of readmission use case, we used synthetic patient data from [Synthea](https://github.com/synthetichealth/synthea). This repo has the code for end-to-end machine learing i.e., creating synthetic data from Synthea, storing data in object storage, creating ADW tables, engineering the features and training & deploying model using Oracle ADS.
+For demoing the predictive modeling of readmission use case, synthetic patient data from [Synthea](https://github.com/synthetichealth/synthea) is used. This repo has the code for end-to-end machine learing i.e., creating synthetic data from Synthea, storing data in object storage, creating ADW tables, engineering the features and training & deploying model using Oracle ADS.
 
 
 # Business use:
 
-Health insurance companies spend 80\% of the cost on 20\% of the insured members. One of the main contributors to this cost is readmission events. Health insurance companies have specialized nurse support to outreach members with an in-hospital admission, to ensure that they are properly treated at the hospital and to send them to a right triage after discharge. Readmission predictive model would help health insurance companies to utilize their nurse resources to target members with high risk of readmission and reduce the medical cost.
+Health insurance companies spend ~ 80\% of the cost on ~20\% of the insured members. One of the main contributors to this cost is readmission events. Health insurance companies have specialized nurse support to outreach members with an in-hospital admission, to ensure that they are properly treated at the hospital and to send them to a right triage after discharge. Readmission predictive model would help health insurance companies to utilize nurse resources to target members with high risk of readmission and reduce the medical cost.
 
-In US, Center for Medicare and Medicaid services (CMS) provides STARs rating to hospital quality summarizing a variety of measures across 5 areas (mortality, safety of care, readmission, patient experience and timely & effective care) of quality for each hospital.  Readmission being one of the key measures, predictive model would help hospitals to identify the patients that are at high risk of readmission and improve their quality of care
+In US, Center for Medicare and Medicaid services (CMS) provides STARs rating to hospital quality summarizing a variety of measures across 5 areas (mortality, safety of care, readmission, patient experience and timely & effective care) of quality for each hospital.  Readmission being one of the key measures, predictive model would help hospitals to identify the patients that are at high risk of readmission and improve their quality of care.
 
 
 # Data set:
@@ -54,6 +54,7 @@ CSV file data dictionary is available [here](https://github-wiki-see.page/m/synt
 
 
 # Reference architecture diagram
+![Architecture Diagram](Architecture.png)
 
 # Pre-requisites
 1. On desktop machine, install [OCI Command Line Interface](https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/cliinstall.htm).  
@@ -70,7 +71,9 @@ pip Install oracle_ads==2.5.9
 1. Follow [README](https://github.com/synthetichealth/synthea) section of Synthea and create a dataset of atleast 100K patients 
 2. Create a bucket in OCI object storage and load all CSVs to object storage. [(Reference)](https://docs.oracle.com/en-us/iaas/tools/oci-cli/3.8.1/oci_cli_docs/cmdref/os/object/put.html)
 3. Provision autonomous database as mentioned in this [live lab](https://apexapps.oracle.com/pls/apex/dbpm/r/livelabs/workshop-attendee-2?p210_workshop_id=553&p210_type=2&session=117445891684673)
-3. "data_prep" folder has "001_load_tables.sql" script to load CSVs to tables in ADW
-4.  In ADW, run scripts in '002_create_features.sql' in SQL worksheet. Refer to [livelab](https://oracle.github.io/learning-library/data-management-library/autonomous-database/shared/workshops/freetier-indepth/?lab=adb-query)
-5. Run 001_combine_features.ipynb to create ML ready dataframe. Run to [livelab](https://oracle.github.io/learning-library/data-management-library/autonomous-database/shared/workshops/freetier-indepth/?lab=adw-connection-wallet) for getting ADW wallets
-6. Run 001_build_model.ipynb to create , catalog and deploy a ML model using Oracle ADS
+3. [data_prep](https://github.com/Chandrak1907/Synthea_readmission/tree/main/data_prep) folder has [data_prep/001_load_tables.sql](https://github.com/Chandrak1907/Synthea_readmission/blob/main/data_prep/001_load_tables.sql) script to load CSVs to tables in ADW
+4.  In ADW SQL worksheet, run [feature_extract/002_create_features.sql](https://github.com/Chandrak1907/Synthea_readmission/blob/main/feature_extract/002_create_features.sql). Refer to [livelab](https://oracle.github.io/learning-library/data-management-library/autonomous-database/shared/workshops/freetier-indepth/?lab=adb-query)
+5. Run [feature_extract/003_combine_features.ipynb](https://github.com/Chandrak1907/Synthea_readmission/blob/main/feature_extract/003_combine_features.ipynb) to create ML ready dataframe. Refer to [livelab](https://oracle.github.io/learning-library/data-management-library/autonomous-database/shared/workshops/freetier-indepth/?lab=adw-connection-wallet) for getting ADW wallets
+6. Run [model_build/004_build_model.ipynb](https://github.com/Chandrak1907/Synthea_readmission/blob/main/model_build/004_build_model.ipynb) to create , catalog and deploy a ML model using Oracle ADS
+
+

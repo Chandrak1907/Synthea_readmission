@@ -5,8 +5,11 @@
 2. Calculates the duration between successive inpatient events
 3. Selects the inpatient events that occurred in less than 31 days - These are avoidable readmission events and positive classes for ML
 */ 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 31fdb30fe30ddb7689fa9b789baff374b8372c5c
 drop table A1;
 CREATE table  A1 as
 with temp1 as 
@@ -30,7 +33,10 @@ select temp2.* ,rank() over(PARTITION by temp2.patient order by temp2.start_new)
 /* Below  script will join above table with original encounters table and filters out all patients that had an inpatient event. This will
 1. Identify the patients that did not have an inpatient event 
 */ 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 31fdb30fe30ddb7689fa9b789baff374b8372c5c
 drop table B2;
 Create table B2 as 
 with temp1 as 
@@ -43,12 +49,20 @@ select temp1.* ,rank() over(PARTITION by temp1.patient order by temp1.start_new)
 from temp1
 where p2 is null;
 
+<<<<<<< HEAD
 /* selecting all patients without an avoidable readmission event. Included the first inpatient event*/
 drop table sample_table_no_rap;
 CREATE table  sample_table_no_rap as
 select patient, start_new, stop, inp_duration from B2 where rnk=1;
 
 
+=======
+
+/* selecting all patients without an avoidable readmission event. Included the first inpatient event*/
+CREATE table  sample_table_no_rap as
+select patient, start_new, stop, inp_duration from B2 where rnk=1;
+
+>>>>>>> 31fdb30fe30ddb7689fa9b789baff374b8372c5c
 /* One patient could have multiple readmission events. Included the first event as an avoidable readmission event */
 drop table sample_table;
 CREATE table  sample_table as
@@ -63,6 +77,14 @@ select * from sample_table_no_rap
 union
 select * from sample_table;
 
+<<<<<<< HEAD
+=======
+/* Adding readmission date - 12 months as start_1yr. This will be useful in feature generation */
+select count(*) from rap_table;
+select rap_table.*, add_months(rap_table.start_new,-12) as start_1yr  from rap_table;
+
+select * from allergies;
+>>>>>>> 31fdb30fe30ddb7689fa9b789baff374b8372c5c
 
 drop table allergy_features;
 create table allergy_features as
