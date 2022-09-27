@@ -6,7 +6,7 @@ begin
   DBMS_CLOUD.create_credential(
     credential_name => 'OBJ_STORE_CRED_new',
     username => 'oracleidentitycloudservice/chandrashekar.konda@oracle.com',
-    password => 'EI9iH1yBGsr-V;2lTpY#'
+    password => '<password>'
   );
 end;
 /
